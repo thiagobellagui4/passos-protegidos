@@ -16,13 +16,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Instalar Expo CLI e EAS CLI
-        run: npm install -g expo-cli eas-cli
-
-      - name: Configurar Credencial Expo
-        run: eas login --token ${{ secrets.EXPO_TOKEN }}
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      - name: Instalar EAS CLI
+        run: npm install -g eas-cli
 
       - name: Executar Build do APK no EAS
         run: eas build --platform android --profile preview --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
