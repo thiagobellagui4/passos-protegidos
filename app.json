@@ -13,7 +13,11 @@
     },
     "android": {
       "package": "com.thiagobellagui4.passosprotegidos"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a1b2c3d4-e5f6-7890-abcd-ef0123456789"
+      }
     }
   }
 }
-
