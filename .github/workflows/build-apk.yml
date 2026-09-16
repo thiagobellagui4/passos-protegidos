@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
@@ -16,17 +19,13 @@ jobs:
         with:
           node-version: 18
 
-      - name: Mudar para o diretório correto e Instalar Dependências
-        run: |
-          cd $(ls -d */ | head -n 1)
-          npm install
+      - name: Instalar Dependências
+        run: npm install
 
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
 
-      - name: Executar Build do APK no EAS
-        run: |
-          cd $(ls -d */ | head -n 1)
-          eas build --platform android --profile preview --non-interactive
+      - name: Executar Build do APK
+        run: eas build --platform android --profile preview --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
