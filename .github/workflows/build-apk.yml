@@ -18,6 +18,7 @@ jobs:
 
       - name: Instalar Dependências do Projeto
         run: npm install
+        working-directory: .
 
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
