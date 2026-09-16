@@ -7,9 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
@@ -24,5 +21,6 @@ jobs:
 
       - name: Executar Build do APK no EAS
         run: eas build --platform android --profile preview --non-interactive
+        working-directory: .
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
