@@ -16,14 +16,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Instalar Dependências do Projeto
-        run: npm install
-        working-directory: .
+      - name: Mudar para o diretório correto e Instalar Dependências
+        run: |
+          cd $(ls -d */ | head -n 1)
+          npm install
 
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
 
       - name: Executar Build do APK no EAS
-        run: eas build --platform android --profile preview --non-interactive
+        run: |
+          cd $(ls -d */ | head -n 1)
+          eas build --platform android --profile preview --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
