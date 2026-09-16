@@ -7,14 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./passos-protegidos
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
-        with:
-          path: passos-protegidos
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
